@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+
+{% block content %}
+<a class="btn btn-primary btn-xs"href="{% url 'home' %}">Business list</a>
+<h3>Populate Business From Facebook Page</h3>
+<p>This request will take significant time while communicating with facebook server. Please do not close the browser.</p>
+<form method="post" action="{% url 'populate_business' %}">
+    {% csrf_token %}
+    {% bootstrap_form form%}
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{% endblock content %}
