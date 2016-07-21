@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <a class="btn btn-primary btn-xs"href="{% url 'populate_business' %}">Fetch Business from facebook page</a>
+    <h3>Paycom Business Lists</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>PIN</th>
+                <th>Likes</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for b in businesses %}
+            <tr>
+                <td><a href="https://www.facebook.com/{{ b.page_id }}/" target="_blank">{{ b.name }}</td>
+                <td>{{ b.category }}</td>
+                <td>{{ b.phone }}</td>
+                <td>{{ b.street }}</td>
+                <td>{{ b.city }}</td>
+                <td>{{ b.pin }}</td>
+                <td>{{ b.likes }}</td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>No Business Found.</td>
+                <td>Populate business from <a href="{% url 'populate_business' %}"> here</a>.</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock content %}
